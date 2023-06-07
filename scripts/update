@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if checkupdates == *; then
+    notify-send "Updates Available $(checkupdates|wc -l)"
+else
+    notify-send "Up To Date"
+fi

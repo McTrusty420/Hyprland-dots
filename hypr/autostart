@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+swww init 
+waybar
+mpd && mpc ls|mpc add

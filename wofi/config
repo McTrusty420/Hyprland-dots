@@ -1,0 +1,7 @@
+height=400px
+width=600px
+show=drun
+prompt=Search
+insensitive=true
+gtk_dark=true
+location=center

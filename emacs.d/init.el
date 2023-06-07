@@ -1,0 +1,121 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(deeper-blue))
+ '(highlight-indent-guides-method 'character)
+ '(inhibit-startup-echo-area-message "McTrusty")
+ '(inhibit-startup-screen t)
+ '(menu-bar-mode nil)
+ '(package-selected-packages
+   '(kaolin-themes glsl-mode qml-mode rainbow-delimiters highlight-indent-guides which-key lua-mode rainbow-mode lsp-pyright org-bullets swiper dashboard page-break-lines projectile treemacs vterm all-the-icons doom-modeline doom-themes use-package))
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+;;Set Fonts
+(set-face-attribute 'default nil
+		    :font "Cascadia Code 12"
+		    :weight 'medium)
+(scroll-bar-mode -1)
+(fringe-mode -1)
+;;Installing MELPA
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+;(package-refresh-contents)
+(package-initialize)
+;;Installing use-package
+(unless(package-installed-p 'use-package)
+  (package-install 'use-package))
+;;Installing doom-themes
+(use-package doom-themes
+  :ensure t)
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-dracula t)
+  ;; Enable flashing mode-line on errors
+  ;;(doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  ;;(doom-themes-neotree-config)
+  ;; or for treemacs users
+  ;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  ;;(doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+(global-display-line-numbers-mode 1)
+;;Installing doom-modline
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+(require 'all-the-icons)
+(use-package all-the-icons
+  :ensure t)
+;;Installing vterm
+(use-package vterm
+  :ensure t
+  :config
+  (setq vterm-timer-delay 0.01))
+;;Installing treemacs
+(use-package treemacs
+  :ensure t)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
+(use-package page-break-lines
+  :ensure t)
+;;Installing better search thingy
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . 'swiper))
+(use-package rainbow-mode
+  :ensure t
+  :init (add-hook 'prog-mode-hook 'rainbow-mode))
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  :init
+  (company-mode 1))
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))
+
+(use-package org-bullets
+  :ensure t
+  :hook ((org-mode) . org-bullets-mode))
+;;(use-package autothemer
+;;  :ensure t)
+(use-package catppuccin-theme
+   :ensure t)
+ (load-theme 'catppuccin-mocha t)
+(use-package kaolin-themes
+  :ensure t)
+(use-package rainbow-delimiters
+  :ensure t)
+;; (load-theme 'kaolin-bubblegum t)
+;;
+;;
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-items '((recents  . 10)
+                        (bookmarks . 10)
+                        (agenda . 5)))
+(electric-pair-mode t)
+(ivy-mode t)
+;;(set-frame-parameter nil 'alpha-background 80) ; For current frame
+;;(add-to-list 'default-frame-alist '(alpha-background . 80)) ; For all

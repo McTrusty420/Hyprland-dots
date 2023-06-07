@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mpv "$(fzf -e --query='Shows .mp4$ | .mkv$')"

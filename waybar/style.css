@@ -1,0 +1,389 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: transparent;
+    margin-top: 3px;
+    border-bottom: 3px solid rgba(100, 114, 125, 0);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border-radius: 20px;
+    margin-left: 0px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset -2px -2px #f9e2af;
+    transition-property: box-shadow,background;
+    transition-duration: .2s;
+}
+
+#workspaces {
+    background-color: rgba(49, 50, 68,1);
+    padding: 0px 15px;
+    border: solid 2px rgba(245, 194, 231, 1);
+    border-radius: 20px;
+    
+}
+
+#workspaces button {
+    padding: 0 10px;
+    /*background-color: rgba(245, 194, 231, 1);*/
+    color: rgb(166, 173, 200);
+}
+
+#workspaces button:hover {
+    color: rgba(166,227,161,1);
+}
+
+@keyframes custom-bgmove {
+    0% {
+	background-position: 0% 200%;
+    }
+    
+/*    50% {
+	background-position: 100% 30%;
+    }*/
+    
+    100% {
+	background-position: 200% 200%;
+    }
+}
+
+#workspaces button.active {
+    background: rgb(180, 190, 254);
+    /*background: repeating-radial-gradient(circle at 100%, rgba(180, 190, 254, 1) 10%, rgba(245, 194, 231, 1) 60%, rgba(180, 190, 254, 1) 70%);*/
+    background-size: 200% 200%;
+    color: rgb(17, 17, 27);
+    padding: 0px 10px;
+    transition: background;
+    transition-duration: .5s;
+    border-radius: 10px;
+    /*animation: custom-bgmove 1.5s linear infinite;*/
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: rgba(243, 139, 168, 1);
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#window,
+#mpd {
+    padding: 0 10px;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+#window {
+    padding: 8px 10px;
+    background-color: rgb(49, 50, 68);
+    color: rgb(243, 139, 168);
+    border: solid 2px rgb(245, 194, 231);
+    /*box-shadow: inset -2px -2px rgb(245, 194, 231);*/
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(116, 199, 236);
+    border-radius: 20px;
+}
+
+#battery {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+    border-radius: 20px;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a6e3a1;
+    background-color: rgb(49, 50, 68);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: rgb(49, 50, 68);
+    color: rgb(243, 139, 168);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(203, 166, 247);
+    border-radius: 20px;
+}
+
+#memory {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    border-radius: 20px;
+    color: rgb(148, 226, 213);
+    
+}
+
+#disk {
+    background-color: #964B00;
+    border-radius: 20px;
+}
+
+#backlight {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+#network {
+    background-color: rgb(49, 50, 68);
+    color: rgb(137, 180, 250);
+    border: solid 2px rgb(245, 194, 231);
+    border-radius: 20px;
+}
+
+#network.disconnected {
+    background-color: rgb(49, 50, 68);
+    color: rgb(166, 173, 200);
+}
+
+#pulseaudio {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(249, 226, 175);
+    border-radius: 20px;
+}
+
+#pulseaudio.muted {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+    border-radius: 20px;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    min-width: 100px;
+    color: rgb(166, 173, 200);
+}
+
+#custom-media.custom-spotify {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#temperature {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    border-radius: 20px;
+    color: rgb(250, 179, 135);
+}
+
+#temperature.critical {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(243, 139, 168);
+}
+
+#tray {
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+    border: solid 2px rgb(245, 194, 231);
+}
+
+#mpd {
+    background-color: #66cc99;
+    background: linear-gradient(118deg, rgba(49, 50, 68, 1) 5%, rgb(88, 91, 112) 5%,rgb(88, 91, 112) 20%, rgba(49, 50, 68, 1) 20%, rgba(49, 50, 68, 1) 40%, rgb(88, 91, 112) 40%, rgb(88, 91, 112) 60%, rgba(49, 50, 68, 1) 60%, rgba(49, 50, 68, 1) 80%, rgb(88, 91, 112) 80%, rgb(88, 91, 112) 95%, rgba(49, 50, 68, 1) 95%);
+    background-size: 200% 300%;
+    animation: custom-bgmove 4s linear infinite;
+    color: rgb(166, 173, 200);
+    border: solid 2px rgb(245, 194, 231);
+    font-style: italic;
+    font-weight: normal;
+    border-radius: 20px;
+}
+
+#mpd.disconnected {
+    background: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+}
+
+#mpd.stopped {
+    background: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    color: rgb(166, 173, 200);
+}
+
+#mpd.paused {
+    background: rgb(49, 50, 68);
+    border: solid 2px rgb(245, 194, 231);
+    font-style: normal;
+    color: rgb(166, 173, 200);
+}
+
+#language {
+    background: #00b093;
+    color: #740864;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+/* tooltip label { */
+/*     background: rgba(0,0,0,0); */
+/*     border: none; */
+/* } */
+
+/* tooltip { */
+/*     background-color: rgb(49, 50, 68); */
+/*     color: rgb(245, 194, 231); */
+/*     border: solid 2px rgb(116, 199, 236); */
+/*     border-radius: 20px; */
+/*     margin: 10px; */
+/* } */

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd $1 && ls -r --sort=$2 | sxiv -
